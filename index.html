@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BIM Analyzer</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/Vector Smart Object2.png" />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/iconic/css/material-design-iconic-font.min.css"
+    />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/css-hamburgers/hamburgers.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/animsition/css/animsition.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/select2/select2.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/daterangepicker/daterangepicker.css"
+    />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!--===============================================================================================-->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <style>
+      .left-radius {
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+      }
+      .right-radius {
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+      }
+      .table-row-design {
+        color: #000;
+        text-align: center;
+        background-color: white;
+        border-bottom: 4px solid #ebebeb;
+        font-size: 35px;
+      }
+      .main-table-heading {
+        text-align: center;
+        color: #c7243f;
+        font-size: 35px;
+      }
+      .red-table-row-design {
+        color: #fff;
+        text-align: center;
+        background-color: #c7243f;
+        border-bottom: 4px solid #ebebeb;
+        border-right: 2px solid #ebebeb;
+        font-size: 35px;
+      }
+      .black-table-row-design {
+        color: #fff;
+        text-align: center;
+        background-color: #3c3c3c;
+        border-bottom: 4px solid #ebebeb;
+        border-right: 2px solid #ebebeb;
+        font-size: 35px;
+      }
+
+      #inputFile {
+        position: relative;
+        font-size: 14px;
+        color: #000;
+        line-height: 1.2;
+        display: block;
+        width: 450px;
+        height: 40px;
+        background: #f5d4d9;
+        padding: 0px 15px 0 15px;
+        z-index: 1;
+      }
+      .focus-input100 {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        padding: 9px 15px 0 15px;
+        pointer-events: none;
+        border-radius: 20px;
+        box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0);
+        transition: all 0.4s;
+      }
+    </style>
+    <!-- 
+    <script type="text/javascript">
+      window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+          animationEnabled: true,
+          title: {
+            text: "Desktop Search Engine Market Share - 2016",
+          },
+          data: [
+            {
+              type: "pie",
+              startAngle: 250,
+              yValueFormatString: '##0.00"%"',
+              indexLabel: "{label} {y}",
+              dataPoints: [
+                { y: 26, label: "Google" },
+                { y: 26, label: "Bing" },
+                { y: 25, label: "Baidu" },
+                { y: 3, label: "Yahoo" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 1, label: "Others" },
+                { y: 3, label: "Others" },
+              ],
+            },
+          ],
+        });
+
+        chart.render();
+      };
+	</script> -->
+  </head>
+  <body>
+    <div
+      class="container-login1001"
+      style="background-image: url('images/background.png')"
+    >
+      <div class="d-flex flex-row justify-content-between p-r-50 p-l-50 mt-3">
+        <a href="/">
+          <img src="images/logo.png" alt="logo" width="350" />
+        </a>
+        <div
+          class="container-login100-form-btn d-flex flex-row justify-content-end"
+        >
+          <a href="/login.html">
+            <button class="login100-form-btn1 logout-shadow">Logout</button>
+          </a>
+        </div>
+      </div>
+      <div class="container-login100">
+        <div class="wrap-login100 wrap-login1001 p-l-55 p-r-55 p-t-50 p-b-50">
+          <form class="login100-form validate-form">
+            <p class="text-center text-white" style="font-size: 44px">
+              Welcome to BIM Analyzer
+            </p>
+            <span class="login100-form-title text-white p-b-25">
+              Please choose BIM file
+            </span>
+            <div
+              class="wrap-input100 validate-input m-b-20 d-flex flex-row"
+              data-validate="Enter username or email"
+            >
+              <div>
+                <input
+                  id="inputFile"
+                  class="input100file"
+                  type="file"
+                  style="opacity: 0"
+                />
+                <span class="focus-input100" id="chooseFiles">Choose File</span>
+              </div>
+              <div
+                class="container-login100-form-btn d-flex flex-row justify-content-end"
+              >
+                <button class="login100-form-btn">Upload</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-l-50 p-r-50" style="margin-top: -120px">
+      <p class="text-center text-black" style="font-size: 18px">
+        <span style="font-weight: bold">File:</span> yuhl demo file.ifc
+      </p>
+      <p class="text-center text-black" style="font-size: 44px">
+        (17825.98610621982, 663196.8560680016)
+      </p>
+
+      <span class="login100-form-title text-black p-t-15">
+        GovMap Location
+      </span>
+
+      <div class="m-t-20">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3402.1648449264953!2d74.26235231463019!3d31.492152455686885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919024cabbe0f85%3A0xebb87892e7543162!2sMansoorah%20Hospital!5e0!3m2!1sen!2s!4v1605967840462!5m2!1sen!2s"
+          frameborder="0"
+          style="border: 0; width: 70%; height: 450px; margin-left: 15%"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="m-t-30 p-l-50 p-r-50 p-b-15" style="background-color: #ebebeb">
+      <div class="" style="width: 70%; margin-left: 15%">
+        <span class="login100-form-title text-black p-t-15">
+          Model Floors
+        </span>
+
+        <table class="table table-hover m-t-20">
+          <thead>
+            <tr>
+              <th class="main-table-heading">Name</th>
+              <th class="main-table-heading">Level(m)</th>
+              <th class="main-table-heading">Height</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color: #ededed">
+              <td class="left-radius table-row-design">Floor 1</td>
+              <td class="table-row-design">16.93</td>
+              <td class="right-radius table-row-design">339.0</td>
+            </tr>
+            <tr style="background-color: #cecece">
+              <td class="left-radius table-row-design">Floor 1</td>
+              <td class="table-row-design">16.93</td>
+              <td class="table-row-design right-radius">339.0</td>
+            </tr>
+            <tr style="background-color: #ededed">
+              <td class="left-radius table-row-design">Floor 1</td>
+              <td class="table-row-design">16.93</td>
+              <td class="right-radius table-row-design">339.0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-center p-t-20">
+      <div class="p-r-50">
+        <canvas id="myChart1" width="300" height="300"></canvas>
+      </div>
+      <div class="p-l-50">
+        <canvas id="myChart2" width="300" height="300"></canvas>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-center p-t-20">
+      <div class="col-12">
+        <span class="login100-form-title1 p-t-20" style="color: #c7243f">
+          Area Graph
+        </span>
+        <!-- <canvas id="myChart3" width="300" height="300"></canvas> -->
+        <div id="chartContainer" style="height: 370px; width: 100%"></div>
+      </div>
+    </div>
+
+    <div class="m-t-30 p-l-50 p-r-50 p-b-15" style="background-color: #ebebeb">
+      <div class="" style="width: 70%; margin-left: 15%">
+        <span class="login100-form-title text-black p-t-15 p-b-20">
+          Model Areas
+        </span>
+
+        <table class="table table-hover m-t-20">
+          <thead>
+            <tr>
+              <th class="main-table-heading">#</th>
+              <th class="main-table-heading">Level</th>
+              <th class="main-table-heading">Room</th>
+              <th class="main-table-heading">AreaValue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color: #ededed">
+              <td class="left-radius table-row-design">1</td>
+              <td class="table-row-design">16.93</td>
+              <td class="table-row-design heeboFont">חדר מדרגות</td>
+              <td class="right-radius table-row-design">339.0</td>
+            </tr>
+            <tr style="background-color: #cecece">
+              <td class="left-radius table-row-design">1</td>
+              <td class="table-row-design">16.93</td>
+              <td class="table-row-design heeboFont">חדר מדרגות</td>
+              <td class="right-radius table-row-design">339.0</td>
+            </tr>
+            <tr style="background-color: #ededed">
+              <td class="left-radius table-row-design">1</td>
+              <td class="table-row-design">16.93</td>
+              <td class="table-row-design heeboFont">חדר מדרגות</td>
+              <td class="right-radius table-row-design">339.0</td>
+            </tr>
+            <tr>
+              <th class="left-radius main-table-heading table-row-design">
+                15
+              </th>
+              <th class="main-table-heading table-row-design">Level</th>
+              <th class="main-table-heading table-row-design">Total</th>
+              <th class="right-radius main-table-heading table-row-design">
+                350.05
+              </th>
+            </tr>
+            <tr>
+              <th class="left-radius main-table-heading table-row-design">
+                16
+              </th>
+              <th class="main-table-heading table-row-design"></th>
+              <th class="main-table-heading table-row-design">Grand Total</th>
+              <th class="right-radius main-table-heading table-row-design">
+                350.05
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p-t-70" style="width: 85%; margin-left: 7.5%">
+        <table class="table table-hover">
+          <tbody>
+            <tr style="background-color: #ededed">
+              <td class="left-radius red-table-row-design">Level</td>
+              <td class="red-table-row-design">Level Name</td>
+              <td class="red-table-row-design">Apartment</td>
+              <td class="red-table-row-design">Area Name</td>
+              <td class="red-table-row-design">Area Type</td>
+              <td
+                class="right-radius red-table-row-design"
+                style="border-right: 0"
+              >
+                Area - m2
+              </td>
+            </tr>
+            <tr style="background-color: #cecece">
+              <td class="left-radius table-row-design">16.93</td>
+              <td class="table-row-design heeboFont">קומה 1</td>
+              <td class="table-row-design">Apt 3</td>
+              <td class="table-row-design heeboFont">קומה 3</td>
+              <td class="table-row-design">Floor Area</td>
+              <td class="table-row-design right-radius">99.35</td>
+            </tr>
+            <tr style="background-color: #ededed">
+              <td class="left-radius table-row-design"></td>
+              <td class="table-row-design"></td>
+              <td class="table-row-design"></td>
+              <td class="table-row-design heeboFont">מרפסת דירה 3</td>
+              <td class="table-row-design">Exterior Area</td>
+              <td class="right-radius table-row-design">7.45</td>
+            </tr>
+            <tr style="background-color: #ededed">
+              <td class="left-radius black-table-row-design">1 mm</td>
+              <td class="black-table-row-design">16.93</td>
+              <td class="black-table-row-design">total Apt 3</td>
+              <td class="black-table-row-design"></td>
+              <td class="black-table-row-design"></td>
+              <td
+                class="right-radius black-table-row-design"
+                style="border-right: 0"
+              >
+                106.35
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="m-t-10 p-l-50 p-r-50 p-b-80">
+      <div class="" style="width: 50%; margin-left: 25%">
+        <span class="login100-form-title text-black p-t-15"> 3D Model </span>
+
+        <div
+          class="p-t-20 m-t-20"
+          style="border: 3px solid #000000; border-radius: 30px"
+        >
+          <img src="images/Layer 3.png" width="85%" style="margin-left: 7.5%" />
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-bar-content-index text-center p-1">
+      <img
+        src="images/Vector Smart Object2.png"
+        height="15px"
+        style="z-index: 1"
+      />
+      <span id="copyright" class="p-l-2" style="font-size: 18px">
+        By Studio Keret - &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        &nbsp; All Rights Reserved </span
+      ><!-- /#copyright -->
+    </div>
+
+    <script>
+      var inputFile = document.getElementById("inputFile");
+      window.onload = inputFile.addEventListener("change", function (e) {
+        document.getElementById("chooseFiles").textContent =
+          e.target.files[0].name;
+      });
+    </script>
+
+    <script>
+      var ctx = document.getElementById("myChart1");
+      var myChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["Small", "Medium", "Large"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3],
+              backgroundColor: [
+                "rgba(131, 126, 124, 1)",
+                "rgba(178, 213, 124, 1)",
+                "rgba(228, 214, 182, 1)",
+              ],
+              borderColor: [
+                "rgba(131, 126, 124, 1)",
+                "rgba(178, 213, 124, 1)",
+                "rgba(228, 214, 182, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+      });
+    </script>
+
+    <script>
+      var ctx = document.getElementById("myChart2");
+      var myChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: ["Small", "Medium", "Large"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3],
+              backgroundColor: [
+                "rgba(131, 126, 124, 1)",
+                "rgba(178, 213, 124, 1)",
+                "rgba(228, 214, 182, 1)",
+              ],
+              borderColor: [
+                "rgba(131, 126, 124, 1)",
+                "rgba(178, 213, 124, 1)",
+                "rgba(228, 214, 182, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+      });
+    </script>
+
+    <script type="text/javascript">
+      window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+          animationEnabled: true,
+          data: [
+            {
+              type: "pie",
+              startAngle: 250,
+              yValueFormatString: '##0.00"%"',
+              indexLabel: "{label} {y}",
+              dataPoints: [
+                { y: 26, label: "Google" },
+                { y: 26, label: "Bing" },
+                { y: 25, label: "Baidu" },
+                { y: 3, label: "Yahoo" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 2, label: "Others" },
+                { y: 1, label: "Others" },
+                { y: 3, label: "Others" },
+              ],
+            },
+          ],
+        });
+
+        chart.render();
+      };
+    </script>
+    <!-- <script>
+		var ctx = document.getElementById('myChart3');
+		var myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				// labels: ['Small', 'Medium', 'Large'],
+				datasets: [{
+					label: '# of Votes',
+					data: [13, 13, 13, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 3],
+					backgroundColor: [
+						'rgba(232, 40, 79, 0.5)',
+						'rgba(198, 218, 167, 0.5)',
+						'rgba(70, 70, 70, 0.5)',
+						'rgba(128, 100, 161, 0.5)',
+						'rgba(72, 172, 197, 0.5)',
+						'rgba(247, 150, 71, 0.5)',
+						'rgba(127, 96, 132, 0.5)',
+						'rgba(119, 160, 51, 0.5)',
+						'rgba(51, 85, 139, 0.5)',
+						'rgba(229, 149, 102, 0.5)',
+						'rgba(72, 130, 192, 0.5)',
+						'rgba(232, 40, 79, 0.5)',
+						'rgba(119, 160, 51, 0.5)',
+						'rgba(79, 129, 188, 0.5)'
+					],
+					borderColor: [
+						'rgba(232, 40, 79, 1)',
+						'rgba(198, 218, 167, 1)',
+						'rgba(70, 70, 70, 1)',
+						'rgba(128, 100, 161, 1)',
+						'rgba(72, 172, 197, 1)',
+						'rgba(247, 150, 71, 1)',
+						'rgba(127, 96, 132, 1)',
+						'rgba(119, 160, 51, 1)',
+						'rgba(51, 85, 139, 1)',
+						'rgba(229, 149, 102, 1)',
+						'rgba(72, 130, 192, 1)',
+						'rgba(232, 40, 79, 1)',
+						'rgba(119, 160, 51, 1)',
+						'rgba(79, 129, 188, 1)'
+					],
+					borderWidth: 1
+				}]
+			}
+		});
+	</script> -->
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+    <!--===============================================================================================-->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+      setTimeout(function () {
+        var elem = document.querySelector(".canvasjs-chart-credit");
+        elem.parentNode.removeChild(elem);
+      }, 3000);
+    </script>
+  </body>
+</html>
